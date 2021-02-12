@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Article 3</title>
+    <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="435760117365-kct1om612u7leaju47r7go50lo6utve3.apps.googleusercontent.com">
+    <style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.header {
+			padding: 20px;
+			color: white;
+			background-color: #d80026;
+		}
+        .title-link {
+			text-decoration: none;
+			color: white;
+		}
+		.main-content {
+            padding: 30px;
+            width: 900px;
+            margin: auto;
+            text-align: justify;
+		}
+	</style>
+    <!--script async type="application/javascript" src="https://news.google.com/swg/js/v1/swg.js"></script-->
+    <script async subscriptions-control="manual" src="https://news.google.com/swg/js/v1/swg.js"></script>
+    <script>
+        (self.SWG = self.SWG || []).push(subscriptions => {
+            // ... initialize swg.js manually  in step 1.
+            subscriptions.init('clarin.persiscalconsulting.com:free')
+        
+            // 2. Add a Swg Button for each product.
+            let basicSmartButton = document.getElementById("direct-offer-swg-button")
+            subscriptions.attachSmartButton(
+                basicSmartButton,
+                { theme: 'light', lang: 'en' }, () => {
+                // 3. In individual button, call subcribe() with the productID...
+                subscriptions.subscribe('clarin.persiscalconsulting.com:free')
+            })
+        
+            // 4. Include a setOnPaymentResponse function to handle the response from purchases,
+            subscriptions.setOnPaymentResponse(async paymentResponse => {
+                let response = await paymentResponse
+                console.log('subscribeResponse')
+                // a. Handle subscription response.
+                // b. Once subscription is processed (account created):
+                await response.complete();
+                // c. The subscription is fully processed.
+                console.log('Now you can unblock content or show additional UI')
+            })
+        })
+    </script>
+</head>
+<body>
+    <header class="header">
+		<a href="index.html" class="title-link">
+			<div>
+				<h1>SwG Clarín</h1>
+			</div>
+		</a>
+    </header>
+    <main class="main-content">
+        <button id="direct-offer-swg-button"></button>
+        <h2>Article 3</h2>
+        <br />
+        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, mollitia!</h3>
+        <br />
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga voluptatum recusandae explicabo nihil aliquid, 
+            officia placeat neque aspernatur dicta! Dolores recusandae excepturi illo corporis dicta quae vero sed nemo. 
+            Maxime?
+        </p>
+        <br />
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vel totam repellendus facilis quidem, natus 
+            cupiditate provident nihil voluptate nemo perspiciatis illo? Quod, maxime? Iste.
+        </p>
+        <br />
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui cumque quod iure ipsam praesentium minus expedita 
+            assumenda? Consequuntur repudiandae non natus iusto ratione quia explicabo dignissimos et commodi, saepe animi, 
+            ex accusantium voluptatibus qui quo.
+        </p>
+        <br />
+        <div id="button_container"></div>
+    </main>
+    
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "headline": "article1",
+            "publisher": {
+                "name": "Clarin Dummy",
+                "@type": "Organization",
+                "@id": "clarin.persiscalconsulting.com"
+            },
+            "description": "Article 1",
+            "isAccessibleForFree": "False",
+            "isPartOf": {
+                "@type": ["CreativeWork", "Product"],
+                "name" : "SwG Clarin",
+                "productID": "clarin.persiscalconsulting.com:free"
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="swg_react.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="435760117365-kct1om612u7leaju47r7go50lo6utve3.apps.googleusercontent.com">
+	<title>Clarin SwG</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.header {
+			padding: 20px;
+			color: white;
+			background-color: #d80026;
+			text-decoration: none;
+			display: flex;
+            align-items: center;
+            justify-content: space-between;
+		}
+		.user-status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+		.main-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.title-link {
+			text-decoration: none;
+			color: white;
+		}
+		.link {
+			text-decoration: none;
+		}
+		.article {
+			border: 1px solid black;
+			width: 500px;
+			padding: 25px;
+			text-align: center;
+		}
+	</style>
+	<script>
+        function onSignIn(googleUser) {
+			const auth_response = googleUser.getAuthResponse(true)
+			const profile = googleUser.getBasicProfile()
+			let user = {}
+			user.gid = profile.getId()
+			user.name = profile.getName()
+			user.email = profile.getEmail()
+			user.gidtoken = auth_response.id_token
+			user.gadToken = auth_response.access_token
+			console.log(user)
+        }
+      
+        async function signOut() {
+			var auth2 = gapi.auth2.getAuthInstance()
+			await auth2.signOut()
+			console.log(['Not signed in'])
+        }
+      </script>
+</head>
+
+<body>
+	<header class="header">
+		<a href="index.html" class="title-link">
+			<div>
+				<h1>SwG Clarín</h1>
+			</div>
+        </a>
+        <div class="user-status">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="" onclick="signOut();" style="padding-top: 10px;">Cerrar Sesión</a>
+        </div>
+	</header>
+	<main>
+		<div class="main-content">
+			<br />
+			<br />
+			<a href="article1.html" class="link">
+				<div class="article">Article 1 (con botón)</div>
+			</a>
+			<br />
+			<br />
+			<a href="article2.html" class="link">
+				<div class="article">Article 2 (automático)</div>
+			</a>
+			<br />
+			<br />
+			<a href="article3.html" class="link">
+				<div class="article">Article 3 (direct offer)</div>
+			</a>
+			<br />
+			<br />
+		</div>
+	</main>
+</body>
+
+</html>

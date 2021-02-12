@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Article 1</title>
+    <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="435760117365-kct1om612u7leaju47r7go50lo6utve3.apps.googleusercontent.com">
+    <style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.header {
+			padding: 20px;
+			color: white;
+			background-color: #d80026;
+		}
+        .title-link {
+			text-decoration: none;
+			color: white;
+		}
+		.main-content {
+            padding: 30px;
+            width: 900px;
+            margin: auto;
+            text-align: justify;
+		}
+	</style>
+    <!--script async type="application/javascript" src="https://news.google.com/swg/js/v1/swg.js"></script-->
+    <script async subscriptions-control="manual" src="https://news.google.com/swg/js/v1/swg.js"></script>
+    <script>
+        (self.SWG = self.SWG || []).push(function(subscriptions) {
+            // swg.js initializes automatically, returns swg.js functions an object.
+            console.log(subscriptions)
+            subscriptions.init('clarin.persiscalconsulting.com:test_basic_monthly')
+
+            subscriptions.getOffers()
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+
+            /*subscriptions.showOffers()
+                .then(res => console.log(res))
+                .catch(err => console.log(err))*/
+
+            // Subscribe with google Button
+            let swgStdButton = document.getElementById("swg-standard-button")
+            subscriptions.attachButton(
+                swgStdButton,
+                // 4. Include options i.e. light styles or languages..
+                {theme: 'light', lang: 'en'},
+                // .. and onclick functions in the callback i.e. showOffersor subscribe(SKU)
+                function() {
+                    subscriptions.showOffers({ isClosable: true }) // Show offers carousel
+                }
+            )
+        })
+    </script>
+</head>
+<body>
+    <header class="header">
+		<a href="index.html" class="title-link">
+			<div>
+				<h1>SwG Clarín</h1>
+			</div>
+		</a>
+    </header>
+    <main class="main-content">
+        <h2>Article 1</h2>
+        <br />
+        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, mollitia!</h3>
+        <br />
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga voluptatum recusandae explicabo nihil aliquid, 
+            officia placeat neque aspernatur dicta! Dolores recusandae excepturi illo corporis dicta quae vero sed nemo. 
+            Maxime?
+        </p>
+        <br />
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum vel totam repellendus facilis quidem, natus 
+            cupiditate provident nihil voluptate nemo perspiciatis illo? Quod, maxime? Iste.
+        </p>
+        <br />
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui cumque quod iure ipsam praesentium minus expedita 
+            assumenda? Consequuntur repudiandae non natus iusto ratione quia explicabo dignissimos et commodi, saepe animi, 
+            ex accusantium voluptatibus qui quo.
+        </p>
+        <br />
+        <button id="swg-standard-button"></button>
+    </main>
+    
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "headline": "article1",
+            "publisher": {
+                "name": "Clarin Dummy",
+                "@type": "Organization",
+                "@id": "clarin.persiscalconsulting.com"
+            },
+            "description": "Article 1",
+            "isAccessibleForFree": "False",
+            "isPartOf": {
+                "@type": ["CreativeWork", "Product"],
+                "name" : "SwG Clarin",
+                "productID": "clarin.persiscalconsulting.com:test_basic_monthly"
+            }
+        }
+    </script>
+</body>
+</html>
